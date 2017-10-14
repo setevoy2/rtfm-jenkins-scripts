@@ -43,7 +43,7 @@ node {
         provision.cfStackCreateOrUpdate('update', "${CF_TEMPLATES_REPO_URL}", "${CF_BRANCH}", "${CF_STACK_TEMPLATE_FILE}", "${CF_STACK_NAME}", "${ENV}", "${CF_EC2_KEY_NAME}", "${HOME_ALLOW_LOCATION}")
     } catch(Exception) {
         // if cfCheckStackPresent == False then "create"
-        provision.fStackCreateOrUpdate('create', "${CF_TEMPLATES_REPO_URL}", "${CF_BRANCH}", "${CF_STACK_TEMPLATE_FILE}", "${CF_STACK_NAME}", "${ENV}", "${CF_EC2_KEY_NAME}", "${HOME_ALLOW_LOCATION}")
+        provision.cfStackCreateOrUpdate('create', "${CF_TEMPLATES_REPO_URL}", "${CF_BRANCH}", "${CF_STACK_TEMPLATE_FILE}", "${CF_STACK_NAME}", "${ENV}", "${CF_EC2_KEY_NAME}", "${HOME_ALLOW_LOCATION}")
     } 
 
 }
