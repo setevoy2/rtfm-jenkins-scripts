@@ -39,8 +39,8 @@ node {
     // action='1', cfTemplatesRepoUrl='2', cfBranch='3', cfTemplateFile='4', cfStackName='5', env='6', cfKeyName='7', allowLocation='8'
     try {
         // if cfCheckStackPresent == True then "update"
-        provision.fCheckStackPresent("${CF_STACK_NAME}")
-        provision.fStackCreateOrUpdate('update', "${CF_TEMPLATES_REPO_URL}", "${CF_BRANCH}", "${CF_STACK_TEMPLATE_FILE}", "${CF_STACK_NAME}", "${ENV}", "${CF_EC2_KEY_NAME}", "${HOME_ALLOW_LOCATION}")
+        provision.cfCheckStackPresent("${CF_STACK_NAME}")
+        provision.cfStackCreateOrUpdate('update', "${CF_TEMPLATES_REPO_URL}", "${CF_BRANCH}", "${CF_STACK_TEMPLATE_FILE}", "${CF_STACK_NAME}", "${ENV}", "${CF_EC2_KEY_NAME}", "${HOME_ALLOW_LOCATION}")
     } catch(Exception) {
         // if cfCheckStackPresent == False then "create"
         provision.fStackCreateOrUpdate('create', "${CF_TEMPLATES_REPO_URL}", "${CF_BRANCH}", "${CF_STACK_TEMPLATE_FILE}", "${CF_STACK_NAME}", "${ENV}", "${CF_EC2_KEY_NAME}", "${HOME_ALLOW_LOCATION}")
