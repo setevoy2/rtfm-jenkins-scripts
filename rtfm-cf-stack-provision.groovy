@@ -9,10 +9,6 @@ node {
     AWS_SECRET_ACCESS_KEY = "${AWS_SECRET_ACCESS_KEY}"
 
     // String parameters
-    // Environment type - rtfm-dev or rtfm-production. 
-    // To be used during stack-create.
-    ENV = "${ENV}"
-
     CI_BRANCH = "${CI_BRANCH}"
     CI_SCRIPTS_REPO_URL = "${CI_SCRIPTS_REPO_URL}"
 
@@ -21,6 +17,8 @@ node {
     CF_STACK_TEMPLATE_FILE = "${CF_STACK_TEMPLATE_FILE}"
 
     CF_STACK_NAME = "${CF_STACK_NAME}"
+    // Environment type - rtfm-dev or rtfm-production.
+    // To be used during stack-create.
     ENV = "${ENV}"
     CF_EC2_KEY_NAME = "${CF_EC2_KEY_NAME}"
     HOME_ALLOW_LOCATION = "${HOME_ALLOW_LOCATION}"
