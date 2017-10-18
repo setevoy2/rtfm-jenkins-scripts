@@ -46,4 +46,17 @@ def cfStackCreateOrUpdate(action='1', cfTemplatesRepoUrl='2', cfBranch='3', cfTe
     }
 }
 
+def ansiblePlaybookValidate(ansibleHostLimit='1', ansiblePlaybookFile='2') {
+
+    docker.image('williamyeh/ansible:master-ubuntu16.04').inside('-v /var/run/docker.sock:/var/run/docker.sock') {
+
+        git branch: "${ANSIBLE_GITHUB_BRANCH}",  url: "${ANSIBLE_GITHUB_REPO_URL}"
+
+        stage('Ansible playbook validate') {
+
+            sh "ansible-playbook --syntax-check --limit=${ansibleHostLimit} ${ansiblePlaybookFile}"
+        }
+    }
+}
+
 return this
