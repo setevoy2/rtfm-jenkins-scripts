@@ -59,4 +59,26 @@ def ansiblePlaybookValidate(ansibleHostLimit='1', ansiblePlaybookFile='2') {
     }
 }
 
+def ansiblePlaybookApply(ansibleHostLimit='1', ansiblePlaybookFile='2', ansiblePemFile='3') {
+
+    docker.image('williamyeh/ansible:master-ubuntu16.04').inside('-v /var/run/docker.sock:/var/run/docker.sock') {
+
+        git branch: "${ANSIBLE_GITHUB_BRANCH}",  url: "${ANSIBLE_GITHUB_REPO_URL}"
+
+        dir('credentials') {
+            git branch: "master", credentialsId: 'setevoy_bitbucket_aws', url: "${ANSIBLE_BB_CREDENTIALS_REPO_URL}"
+        }
+        
+        dir('roles/nginx/templates/virtualhosts') {
+            git branch: "${ANSIBLE_BB_TEMPLATES_BRANCH}", credentialsId: 'setevoy_bitbucket_aws', url: "${ANSIBLE_BB_TEMPLATES_REPO_URL}"
+        }
+
+        stage('Ansible playbook apply') {
+
+            sh "chmod 400 credentials/${ANSIBLE_EC2_PEM_FILE}"
+            sh "ansible-playbook --limit=${ansibleHostLimit} --private-key=credentials/${ansiblePemFile} ${ansiblePlaybookFile}"
+        }
+    }
+}
+
 return this

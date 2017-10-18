@@ -19,4 +19,7 @@ node {
     // ansibleHostLimit='1', ansiblePlaybookFile='2'
     provision.ansiblePlaybookValidate("${ANSIBLE_HOST_LIMIT}", "${ANSIBLE_PLAYBOOK_FILE}")
 
+    // ansibleHostLimit='1', ansiblePlaybookFile='2', ansiblePemFile='3'
+    provision.ansiblePlaybookApply("${ANSIBLE_HOST_LIMIT}", "${ANSIBLE_PLAYBOOK_FILE}", "${ANSIBLE_EC2_PEM_FILE}")
+
 }
