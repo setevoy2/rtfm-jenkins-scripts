@@ -54,7 +54,7 @@ def ansibleRolesInstall() {
 
         stage('Roles install') {
 
-            sh "ansible-galaxy install --ignore-certs --role-file requirements.yml"
+            sh "ansible-galaxy install --ignore-certs --roles-path roles --role-file requirements.yml"
         }
     }
 }
