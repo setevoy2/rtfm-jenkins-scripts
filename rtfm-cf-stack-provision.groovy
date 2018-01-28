@@ -34,14 +34,14 @@ node {
     // cfTemplatesRepoUrl='1', cfBranch='2', cfTemplateFile='3'
     provision.cfTemplateValidate("${CF_TEMPLATES_REPO_URL}", "${CF_BRANCH}", "${CF_STACK_TEMPLATE_FILE}")
 
-    // action='1', cfTemplatesRepoUrl='2', cfBranch='3', cfTemplateFile='4', cfStackName='5', env='6', cfKeyName='7', allowLocation='8'
+    // action='1', cfTemplatesRepoUrl='2', cfBranch='3', cfTemplateFile='4', cfStackName='5', env='6', cfKeyName='7', allowLocation='8', ciAllowLocation='9'
     try {
         // if cfCheckStackPresent == True then "update"
         provision.cfCheckStackPresent("${CF_STACK_NAME}")
-        provision.cfStackCreateOrUpdate('update', "${CF_TEMPLATES_REPO_URL}", "${CF_BRANCH}", "${CF_STACK_TEMPLATE_FILE}", "${CF_STACK_NAME}", "${ENV}", "${CF_EC2_KEY_NAME}", "${HOME_ALLOW_LOCATION}")
+        provision.cfStackCreateOrUpdate('update', "${CF_TEMPLATES_REPO_URL}", "${CF_BRANCH}", "${CF_STACK_TEMPLATE_FILE}", "${CF_STACK_NAME}", "${ENV}", "${CF_EC2_KEY_NAME}", "${HOME_ALLOW_LOCATION}" "${CI_ALLOW_LOCATION}")
     } catch(Exception) {
         // if cfCheckStackPresent == False then "create"
-        provision.cfStackCreateOrUpdate('create', "${CF_TEMPLATES_REPO_URL}", "${CF_BRANCH}", "${CF_STACK_TEMPLATE_FILE}", "${CF_STACK_NAME}", "${ENV}", "${CF_EC2_KEY_NAME}", "${HOME_ALLOW_LOCATION}")
+        provision.cfStackCreateOrUpdate('create', "${CF_TEMPLATES_REPO_URL}", "${CF_BRANCH}", "${CF_STACK_TEMPLATE_FILE}", "${CF_STACK_NAME}", "${ENV}", "${CF_EC2_KEY_NAME}", "${HOME_ALLOW_LOCATION}", "${CI_ALLOW_LOCATION}")
     } 
 
 }
