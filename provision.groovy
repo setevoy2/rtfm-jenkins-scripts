@@ -46,6 +46,19 @@ def cfStackCreateOrUpdate(action='1', cfTemplatesRepoUrl='2', cfBranch='3', cfTe
     }
 }
 
+def ansibleRolesInstall() {
+
+    docker.image('williamyeh/ansible:master-ubuntu16.04').inside('-v /var/run/docker.sock:/var/run/docker.sock') {
+
+        git branch: "${ANSIBLE_GITHUB_BRANCH}", url: "${ANSIBLE_GITHUB_REPO_URL}"
+
+        stage('Roles install') {
+
+            sh "ansible-galaxy install --ignore-certs --role-file requirements.yml"
+        }
+    }
+}
+
 def ansiblePlaybookValidate(ansibleHostLimit='1', ansiblePlaybookFile='2') {
 
     docker.image('williamyeh/ansible:master-ubuntu16.04').inside('-v /var/run/docker.sock:/var/run/docker.sock') {
