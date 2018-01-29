@@ -52,7 +52,7 @@ def ansibleRolesInstall() {
 
         git branch: "${ANSIBLE_GITHUB_BRANCH}", url: "${ANSIBLE_GITHUB_REPO_URL}"
 
-        stage('Roles install') {
+        stage('Ansible roles install') {
 
             sh "ansible-galaxy install --ignore-certs --roles-path roles --role-file requirements.yml"
         }
