@@ -89,7 +89,7 @@ def ansiblePlaybookApply(ansibleHostLimit='1', ansiblePlaybookFile='2', ansibleP
         stage('Ansible playbook apply') {
 
             sh "chmod 400 credentials/${ANSIBLE_EC2_PEM_FILE}"
-            sh "ansible-playbook --limit=${ansibleHostLimit} --extra-vars '{"api_key":"${AMPLIFY_API_KEY"}' --private-key=credentials/${ansiblePemFile} ${ansiblePlaybookFile}"
+            sh "ansible-playbook --limit=${ansibleHostLimit} --extra-vars api_key=${AMPLIFY_API_KEY} --private-key=credentials/${ansiblePemFile} ${ansiblePlaybookFile}"
         }
     }
 }
