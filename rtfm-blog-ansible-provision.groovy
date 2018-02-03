@@ -16,7 +16,7 @@ node {
 
     def provision = load 'ciscripts/provision.groovy'
 
-	provision.ansibleRolesInstall()
+    provision.ansibleRolesInstall()
 
     // ansibleHostLimit='1', ansiblePlaybookFile='2'
     provision.ansiblePlaybookValidate("${ANSIBLE_HOST_LIMIT}", "${ANSIBLE_PLAYBOOK_FILE}")
